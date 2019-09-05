@@ -5,6 +5,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>cinema</name>
      <dependencies>
+     <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>42.2.6</version>
+</dependency>
+     
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
