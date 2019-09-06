@@ -29,16 +29,21 @@ class TestCinema {
 	@Test
 	void testLecture() throws SQLException {
 		String sql = "select titre, annee, duree from film";
-		Connection conn = ds.getConnection();
-		Statement st = conn.createStatement();
-		ResultSet res = st.executeQuery(sql);
-		while (res.next()) {
-			String titre = res.getString("titre");
-			int annee = res.getInt(2);
-			int duree = res.getInt("duree");
-			System.out.println("Film : " + titre + "(" + annee 
-					+ ", " + duree + ")");
-		}
+		try ( // resources
+				Connection conn = ds.getConnection();
+				Statement st = conn.createStatement();
+				ResultSet res = st.executeQuery(sql);
+		) { // debut : utilisation resources
+			
+			while (res.next()) {
+				String titre = res.getString("titre");
+				int annee = res.getInt(2);
+				int duree = res.getInt("duree");
+				System.out.println("Film : " + titre + "(" + annee 
+						+ ", " + duree + ")");
+			}
+		} 	// fin utilisation  resources
+			// auto : res.close(), st.close(), conn.close()
 	}
 	
 }
